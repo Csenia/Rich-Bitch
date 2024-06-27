@@ -71,3 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 /Rich Bitch/obj/Debug
+/Rich Bitch/ProjectSettings
+/Rich Bitch/Temp
