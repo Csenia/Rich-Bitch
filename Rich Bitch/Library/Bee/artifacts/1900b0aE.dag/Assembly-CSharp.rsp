@@ -366,6 +366,7 @@
 "Assets/Scripts/Level Manager/Level.cs"
 "Assets/Scripts/Level Manager/LevelManager.cs"
 "Assets/Scripts/Level Manager/LevelsList.cs"
+"Assets/Scripts/Player/PlayerMovement.cs"
 -langversion:9.0
 
 /deterministic
