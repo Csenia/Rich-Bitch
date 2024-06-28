@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CoinCollector : MonoBehaviour
 {
     public static CoinCollector Instance { get; private set; }
 
-    private int coinCount = 0;
-    public TextMeshProUGUI coinText;
+    private const float Count = 0.1f;
+    [HideInInspector] public int CoinCount = 0;
+    [SerializeField] private TextMeshProUGUI _coinText;
+    [SerializeField] private Slider _slider;
 
     private void Awake()
     {
@@ -24,15 +27,16 @@ public class CoinCollector : MonoBehaviour
 
     public void CollectCoin()
     {
-        coinCount++;
+        CoinCount++;
+        _slider.value += Count;
         UpdateCoinText();
     }
 
-    private void UpdateCoinText()
+    public void UpdateCoinText()
     {
-        if (coinText != null)
+        if (_coinText != null)
         {
-            coinText.text = "Coins: " + coinCount;
+            _coinText.text = " " + CoinCount;
         }
     }
 }

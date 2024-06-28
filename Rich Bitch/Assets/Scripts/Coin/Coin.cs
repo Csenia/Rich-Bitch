@@ -3,19 +3,19 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private AudioClip collectSound;
-    [SerializeField] private ParticleSystem coinParticles;
+    [SerializeField] private AudioClip _collectSound;
+    [SerializeField] private ParticleSystem _coinParticles;
 
-    [SerializeField] private float changeSpeed = 1.0f;
-    [SerializeField] private float minScale = 0.1f;
+    [SerializeField] private float _changeSpeed = 1.0f;
+    [SerializeField] private float _minScale = 0.1f;
     
 
-    private Vector3 originalScale;
-    private bool isShrinking = true;
+    private Vector3 _originalScale;
+    private bool _isShrinking = true;
 
     private void Start()
     {
-        originalScale = transform.localScale;
+        _originalScale = transform.localScale;
         StartCoroutine(ScaleCoin());
     }
 
@@ -25,13 +25,13 @@ public class Coin : MonoBehaviour
         {
             CoinCollector.Instance.CollectCoin();
 
-            if (collectSound != null)
+            if (_collectSound != null)
             {
-                AudioSource.PlayClipAtPoint(collectSound, transform.position);
+                AudioSource.PlayClipAtPoint(_collectSound, transform.position);
             }
-            if (coinParticles != null)
+            if (_coinParticles != null)
             {
-                coinParticles.Play();
+                _coinParticles.Play();
             }
             print("—бор монет");
             Destroy(gameObject);
@@ -42,20 +42,20 @@ public class Coin : MonoBehaviour
     {
         while (true)
         {
-            if (isShrinking)
+            if (_isShrinking)
             {
-                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * minScale, changeSpeed * Time.deltaTime);
-                if (transform.localScale.x - 0.1f <= minScale )
+                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * _minScale, _changeSpeed * Time.deltaTime);
+                if (transform.localScale.x - 0.1f <= _minScale )
                 {
-                    isShrinking = false;
+                    _isShrinking = false;
                 }
             }
             else
             {
-                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * originalScale.x, changeSpeed * Time.deltaTime);
-                if (transform.localScale.x +0.1f >= originalScale.x)
+                transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * _originalScale.x, _changeSpeed * Time.deltaTime);
+                if (transform.localScale.x +0.1f >= _originalScale.x)
                 {
-                    isShrinking = true;
+                    _isShrinking = true;
                 }
             }
             yield return null;
